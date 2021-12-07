@@ -32,7 +32,7 @@ inThisBuild(
         url("https://geirsson.com")
       )
     ),
-    scalaVersion := scala213,
+    scalaVersion := scala212,
     crossScalaVersions := List(scala213, scala212),
     resolvers ++= Seq(
       Resolver.sonatypeRepo("releases"),
@@ -182,7 +182,8 @@ val scalacJvmOptions = Def.setting {
 
 lazy val scalaNativeNativeConfig =
   nativeConfig ~= {
-    _.withMode(Mode.debug)
+    _.withMode(Mode.releaseFast)
+    .withLTO(LTO.full)
       .withLinkStubs(true)
   }
 
